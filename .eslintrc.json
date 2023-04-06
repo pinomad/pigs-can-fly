@@ -4,5 +4,9 @@
     "node": true,
     "browser": true
   },
-  "extends": ["airbnb", "plugin:prettier/recommended"]
+  "extends": ["airbnb", "plugin:prettier/recommended"],
+  "rules": {
+    "no-use-before-define": "warn",
+    "react/prop-types": "ignore"
+  }
 }
