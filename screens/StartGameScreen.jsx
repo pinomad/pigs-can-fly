@@ -11,6 +11,7 @@ export default function StartGameScreen({ isTouched }) {
     console.log('터치함');
     isTouched(true);
   };
+
   return (
     <Pressable onPress={handleTouch} style={styles.container}>
       <View style={styles.top}>
