@@ -22,7 +22,7 @@ const Physics = (entities, { touches, time, dispatch }) => {
     ) {
       entities[`ObstacleTop${index}`].point = true;
 
-      dispatch({ type: 'new_point' });
+      dispatch({ type: 'new_score' });
     }
 
     if (entities[`ObstacleTop${index}`].body.bounds.max.x <= 0) {
