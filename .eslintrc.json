@@ -8,6 +8,6 @@
   "rules": {
     "no-use-before-define": "warn",
     "react/prop-types": "warn",
-    "no-param-reassign": 1
+    "no-param-reassign": "warn"
   }
 }

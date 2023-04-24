@@ -8,12 +8,17 @@ import Physics from '../physics';
 export default function GameScreen() {
   const [running, setRunning] = useState(true);
   const [gameEngine, setGameEngine] = useState(null);
-  const [currentPoints, setCurrentPoints] = useState(0);
+  const [score, setScore] = useState(0);
 
   const handleRestart = () => {
-    setCurrentPoints(0);
+    setScore(0);
     setRunning(true);
     gameEngine.swap(entities());
+  };
+
+  const gameOver = () => {
+    setRunning(false);
+    gameEngine.stop();
   };
 
   return (
@@ -26,7 +31,7 @@ export default function GameScreen() {
           fontWeight: '500',
         }}
       >
-        {currentPoints}
+        {score}
       </Text>
       <GameEngine
         ref={ref => {
@@ -38,17 +43,14 @@ export default function GameScreen() {
         onEvent={e => {
           switch (e.type) {
             case 'game_over':
-              setRunning(false);
-              gameEngine.stop();
-              setCurrentPoints(0);
+              gameOver();
 
               break;
-            case 'new_point':
-              setCurrentPoints(currentPoints + 1);
+            case 'new_score':
+              setScore(score + 1);
 
               break;
             default:
-              console.log('해당 타입이 없습니다.');
           }
         }}
         style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
@@ -67,6 +69,9 @@ export default function GameScreen() {
           >
             <Text style={{ fontWeight: '300', color: 'white', fontSize: 30 }}>
               RESTART
+            </Text>
+            <Text style={{ fontWeight: '300', color: 'white', fontSize: 30 }}>
+              SCORE : {score}
             </Text>
           </Pressable>
         </View>
