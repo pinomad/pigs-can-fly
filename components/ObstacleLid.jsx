@@ -1,17 +1,11 @@
 import React from 'react';
 import Matter from 'matter-js';
-import { View, Image } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import Images from '../assets/images';
 
-function Obstacle({ body }) {
+function ObstacleLid({ body }) {
   const { x, y } = body.position;
   const width = body.bounds.max.x - body.bounds.min.x;
   const height = body.bounds.max.y - body.bounds.min.y;
-  // console.log(body);
-  // const pipeRatio = 160 / width;
-  // const pipeHeight = 33 * pipeRatio;
-  // const pipeIterations = Math.ceil(height / pipeHeight);
 
   return (
     <LinearGradient
@@ -26,18 +20,22 @@ function Obstacle({ body }) {
         '#486600',
       ]}
       style={{
+        borderWidth: 3,
+        borderRadius: 5,
+        borderColor: '#486600',
         position: 'absolute',
         left: x - width / 2,
         top: y - height / 2,
         width,
         height,
+        zIndex: 1,
       }}
     />
   );
 }
 
 export default (world, label, pos, size) => {
-  const initialObstacle = Matter.Bodies.rectangle(
+  const initialObstacleLid = Matter.Bodies.rectangle(
     pos.x,
     pos.y,
     size.width,
@@ -45,11 +43,11 @@ export default (world, label, pos, size) => {
     { label, isStatic: true },
   );
 
-  Matter.World.add(world, initialObstacle);
+  Matter.World.add(world, initialObstacleLid);
 
   return {
-    body: initialObstacle,
+    body: initialObstacleLid,
     pos,
-    renderer: <Obstacle />,
+    renderer: <ObstacleLid />,
   };
 };

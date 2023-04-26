@@ -14,13 +14,24 @@ export const getPipeSizePosPair = (addToPosX = 0) => {
     pos: { x: windowWidth + addToPosX + 100, y: yPosTop },
     size: { height: windowHeight * 2, width: 75 },
   };
+
+  const pipeTopLid = {
+    pos: { x: windowWidth + addToPosX + 100, y: yPosTop + windowHeight },
+    size: { height: 50, width: 90 },
+  };
+
   const pipeBottom = {
     pos: {
       x: windowWidth + addToPosX + 100,
-      y: windowHeight * 2 + 200 + yPosTop,
+      y: windowHeight * 2 + 220 + yPosTop,
     },
     size: { height: windowHeight * 2, width: 75 },
   };
 
-  return { pipeTop, pipeBottom };
+  const pipeBottomLid = {
+    pos: { x: windowWidth + addToPosX + 100, y: yPosTop + windowHeight + 220 },
+    size: { height: 50, width: 90 },
+  };
+
+  return { pipeTop, pipeBottom, pipeTopLid, pipeBottomLid };
 };

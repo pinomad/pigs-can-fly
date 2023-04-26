@@ -1,29 +1,42 @@
 import React from 'react';
 import Matter from 'matter-js';
-import { View } from 'react-native';
+import { View, Image } from 'react-native';
+import Images from '../assets/images';
 
-function Floor({ body, color }) {
-  const widthBody = body.bounds.max.x - body.bounds.min.x;
-  const heightBody = body.bounds.max.y - body.bounds.min.y;
+function Floor({ body }) {
+  const { x, y } = body.position;
+  const width = body.bounds.max.x - body.bounds.min.x;
+  const height = body.bounds.max.y - body.bounds.min.y;
 
-  const xBody = body.position.x - widthBody / 2;
-  const yBody = body.position.y - heightBody / 2;
+  const imageIterations = Math.ceil(width / height);
 
   return (
     <View
       style={{
         position: 'absolute',
-        backgroundColor: color,
-        left: xBody,
-        top: yBody,
-        width: widthBody,
-        height: heightBody,
+        left: x - width / 2,
+        top: y - height / 2,
+        width: width * 2,
+        height,
+        overflow: 'hidden',
+        flexDirection: 'row',
       }}
-    />
+    >
+      {[...Array(imageIterations * 2)].map((el, idx) => {
+        return (
+          <Image
+            style={{ width: height, height }}
+            key={idx}
+            resizeMode="stretch"
+            source={Images.floor}
+          />
+        );
+      })}
+    </View>
   );
 }
 
-export default (world, color, pos, size) => {
+const createFloor = (world, pos, size) => {
   const initialFloor = Matter.Bodies.rectangle(
     pos.x,
     pos.y,
@@ -36,8 +49,8 @@ export default (world, color, pos, size) => {
 
   return {
     body: initialFloor,
-    color,
-    pos,
     renderer: <Floor />,
   };
 };
+
+export default createFloor;

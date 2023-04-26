@@ -1,31 +1,44 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Matter from 'matter-js';
-import { View } from 'react-native';
+import { Animated } from 'react-native';
+import Images from '../assets/images';
 
-function Pig({ body, color }) {
-  const widthBody = body.bounds.max.x - body.bounds.min.x;
-  const heightBody = body.bounds.max.y - body.bounds.min.y;
+function Pig({ body, pose }) {
+  const [animatedValue] = useState(new Animated.Value(body.velocity.y));
 
-  const xBody = body.position.x - widthBody / 2;
-  const yBody = body.position.y - heightBody / 2;
+  useEffect(() => {
+    animatedValue.setValue(body.velocity.y);
+  }, [body.velocity.y]);
+
+  const { x, y } = body.position;
+  const width = body.bounds.max.x - body.bounds.min.x;
+  const height = body.bounds.max.y - body.bounds.min.y;
+
+  const image = Images[`pig${pose}`];
+
+  const rotation = animatedValue.interpolate({
+    inputRange: [-10, 0, 10, 20],
+    outputRange: ['-20deg', '0deg', '15deg', '45deg'],
+    extrapolate: 'clamp',
+  });
 
   return (
-    <View
+    <Animated.Image
       style={{
-        borderWidth: 1,
-        borderColor: color,
-        borderStyle: 'solid',
         position: 'absolute',
-        left: xBody,
-        top: yBody,
-        width: widthBody,
-        height: heightBody,
+        left: x - width / 2,
+        top: y - height / 2,
+        width,
+        height,
+        transform: [{ rotate: rotation }],
       }}
+      source={image}
+      resizeMode="stretch"
     />
   );
 }
 
-export default (world, color, pos, size) => {
+const createPig = (world, pos, size) => {
   const initialPig = Matter.Bodies.rectangle(
     pos.x,
     pos.y,
@@ -38,8 +51,9 @@ export default (world, color, pos, size) => {
 
   return {
     body: initialPig,
-    color,
     pos,
     renderer: <Pig />,
   };
 };
+
+export default createPig;
