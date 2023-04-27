@@ -1,9 +1,10 @@
 import React from 'react';
 import { StyleSheet, Image } from 'react-native';
-import logo from '../assets/logo.png';
 
-export default function Logo() {
-  return <Image source={logo} style={styles.image} />;
+import Images from '../assets/images';
+
+export default function Title() {
+  return <Image source={Images.title} style={styles.image} />;
 }
 
 const styles = StyleSheet.create({

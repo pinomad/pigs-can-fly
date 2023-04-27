@@ -1,18 +1,23 @@
 import Matter from 'matter-js';
-import { Dimensions } from 'react-native';
-import { getPipeSizePosPair } from '../utils/random';
+import { Audio } from 'expo-av';
 
-const windowWidth = Dimensions.get('window').width;
+import { getPipeSizePosPair } from '../utils/random';
+import Constants from '../constants';
+
 let tick = 0;
 let pose = 1;
+const touchSound = require('../assets/sfx/flap.wav');
 
 const Physics = (entities, { touches, time, dispatch }) => {
   const { engine } = entities.physics;
+  const soundObject = new Audio.Sound();
 
   touches
     .filter(t => t.type === 'press')
-    .forEach(() => {
+    .forEach(async () => {
       Matter.Body.setVelocity(entities.Pig.body, { x: 0, y: -9 });
+
+      await playSound();
     });
 
   Matter.Engine.update(engine, time.delta);
@@ -28,6 +33,15 @@ const Physics = (entities, { touches, time, dispatch }) => {
     entities.Pig.pose = pose;
   }
 
+  async function playSound() {
+    try {
+      await soundObject.loadAsync(touchSound);
+      await soundObject.playAsync();
+    } catch (error) {
+      console.log('failed to load the sound', error);
+    }
+  }
+
   for (let index = 1; index <= 2; index += 1) {
     if (
       entities[`ObstacleTop${index}`].body.bounds.max.x <= 50 &&
@@ -40,7 +54,7 @@ const Physics = (entities, { touches, time, dispatch }) => {
 
     if (entities[`ObstacleTop${index}`].body.bounds.max.x <= 0) {
       entities[`ObstacleTop${index}`].point = false;
-      const pipeSizePos = getPipeSizePosPair(windowWidth * 0.9);
+      const pipeSizePos = getPipeSizePosPair(Constants.MAX_WIDTH * 1);
 
       Matter.Body.setPosition(
         entities[`ObstacleTopLid${index}`].body,
@@ -83,9 +97,9 @@ const Physics = (entities, { touches, time, dispatch }) => {
       y: 0,
     });
 
-    if (entities.Floor.body.position.x <= (-1 * windowWidth) / 2) {
+    if (entities.Floor.body.position.x <= (-1 * Constants.MAX_WIDTH) / 2) {
       Matter.Body.setPosition(entities.Floor.body, {
-        x: windowWidth / 2,
+        x: Constants.MAX_WIDTH / 2,
         y: entities.Floor.body.position.y,
       });
     } else {

@@ -34,6 +34,7 @@ export default function GameScreen() {
     delay: 0,
     isInteraction: true,
   });
+
   const cloudMoving2 = Animated.timing(cloudX2, {
     toValue: -Constants.MAX_WIDTH - 100,
     duration: 13000,
@@ -41,6 +42,7 @@ export default function GameScreen() {
     delay: 3000,
     isInteraction: true,
   });
+
   const cloudMoving3 = Animated.timing(cloudX3, {
     toValue: -Constants.MAX_WIDTH - 100,
     duration: 10000,
@@ -48,6 +50,7 @@ export default function GameScreen() {
     delay: 2000,
     isInteraction: true,
   });
+
   const cloudMoving4 = Animated.timing(cloudX4, {
     toValue: -Constants.MAX_WIDTH - 100,
     duration: 5000,
@@ -183,7 +186,7 @@ export default function GameScreen() {
           zIndex: 100,
         }}
       >
-        {score}
+        {running && score}
       </Text>
       <GameEngine
         ref={ref => {
@@ -214,32 +217,75 @@ export default function GameScreen() {
           zIndex: 10,
         }}
       />
-      {!running ? (
-        <View
+      {!running && (
+        <Pressable
           style={{
-            flex: 1,
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
             justifyContent: 'center',
             alignItems: 'center',
-            zIndex: 11,
+            backgroundColor: 'black',
+            opacity: 0.5,
+            zIndex: 12,
           }}
+          onPress={handleRestart}
         >
-          <Pressable
+          <View
             style={{
+              flex: 1,
               backgroundColor: 'black',
-              paddingHorizontal: 30,
-              paddingVertical: 30,
+              paddingTop: 200,
             }}
-            onPress={handleRestart}
           >
-            <Text style={{ fontWeight: '300', color: 'white', fontSize: 30 }}>
-              RESTART
+            <Text
+              style={{
+                fontWeight: '600',
+                color: 'white',
+                fontSize: 50,
+                fontFamily: '30PackGirlBold-jRpv',
+              }}
+            >
+              GAME OVER
             </Text>
-            <Text style={{ fontWeight: '300', color: 'white', fontSize: 30 }}>
+          </View>
+          <View
+            style={{
+              flex: 1,
+              backgroundColor: 'black',
+            }}
+          >
+            <Text
+              style={{
+                fontWeight: '600',
+                color: 'white',
+                fontSize: 40,
+                fontFamily: '30PackGirlBold-jRpv',
+              }}
+            >
               SCORE : {score}
             </Text>
-          </Pressable>
-        </View>
-      ) : null}
+          </View>
+          <View
+            style={{
+              flex: 1,
+            }}
+          >
+            <Text
+              style={{
+                fontWeight: '300',
+                color: 'red',
+                fontSize: 30,
+                fontFamily: '30PackGirlBold-jRpv',
+              }}
+            >
+              TAP TO RESTART
+            </Text>
+          </View>
+        </Pressable>
+      )}
     </View>
   );
 }

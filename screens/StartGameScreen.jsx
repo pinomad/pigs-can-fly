@@ -1,26 +1,76 @@
 import React from 'react';
-import { StyleSheet, View, Pressable } from 'react-native';
+import { StyleSheet, View, Pressable, Image } from 'react-native';
 
-import Pig from '../ui/Pig';
-import Pointer from '../ui/Pointer';
-import Logo from '../components/Logo';
+import Title from '../components/Title';
 import TapToStart from '../components/TapToStart';
+import Images from '../assets/images';
+import Constants from '../constants';
 
 export default function StartGameScreen({ isTouched }) {
   const handleTouch = () => {
-    console.log('터치함');
     isTouched(true);
   };
 
   return (
     <Pressable onPress={handleTouch} style={styles.container}>
+      <Image
+        source={Images.background1}
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          width: Constants.MAX_WIDTH,
+          height: 60,
+          zIndex: 3,
+        }}
+        resizeMode="stretch"
+      />
+      <Image
+        source={Images.background2}
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          width: Constants.MAX_WIDTH,
+          height: 160,
+          zIndex: 2,
+        }}
+        resizeMode="cover"
+      />
+      <Image
+        source={Images.background3}
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          width: Constants.MAX_WIDTH,
+          height: 200,
+          zIndex: 1,
+        }}
+        resizeMode="cover"
+      />
+      <Image
+        source={Images.background4}
+        style={{
+          position: 'absolute',
+          top: 0,
+          bottom: 0,
+          left: 0,
+          right: 0,
+          width: Constants.MAX_WIDTH,
+          height: Constants.MAX_HEIGHT,
+          zIndex: 0,
+        }}
+        resizeMode="cover"
+      />
       <View style={styles.top}>
-        <Logo />
+        <Title />
       </View>
       <View style={styles.bottom}>
         <View style={styles.character}>
-          <Pig />
-          <Pointer />
           <TapToStart />
         </View>
       </View>
@@ -31,10 +81,9 @@ export default function StartGameScreen({ isTouched }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ccc',
   },
   top: {
-    flex: 1,
+    flex: 1.5,
     alignItems: 'center',
     justifyContent: 'center',
   },
