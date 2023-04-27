@@ -6,6 +6,7 @@ import StartGameScreen from './screens/StartGameScreen';
 import GameScreen from './screens/GameScreen';
 
 const font = require('./assets/fonts/30PackGirlBold-jRpv.ttf');
+const font2 = require('./assets/fonts/GrislyBeastRegular-0W9rG.ttf');
 
 export default function App() {
   const [isStart, setIsStart] = useState(false);
@@ -13,6 +14,7 @@ export default function App() {
   async function loadFonts() {
     await loadAsync({
       '30PackGirlBold-jRpv': font,
+      'GrislyBeastRegular-0W9rG': font2,
     });
   }
 

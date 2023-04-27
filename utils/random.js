@@ -23,7 +23,7 @@ export const getPipeSizePosPair = (addToPosX = 0) => {
   const pipeBottom = {
     pos: {
       x: Constants.MAX_WIDTH + addToPosX + 100,
-      y: Constants.MAX_HEIGHT * 2 + 220 + yPosTop,
+      y: Constants.MAX_HEIGHT * 2 + 230 + yPosTop,
     },
     size: { height: Constants.MAX_HEIGHT * 2, width: 75 },
   };
@@ -31,7 +31,7 @@ export const getPipeSizePosPair = (addToPosX = 0) => {
   const pipeBottomLid = {
     pos: {
       x: Constants.MAX_WIDTH + addToPosX + 100,
-      y: yPosTop + Constants.MAX_HEIGHT + 220,
+      y: yPosTop + Constants.MAX_HEIGHT + 230,
     },
     size: { height: 50, width: 90 },
   };

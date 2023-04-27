@@ -10,8 +10,7 @@ import Constants from '../constants';
 export default () => {
   const engine = Matter.Engine.create({ enableSleeping: false });
   const { world } = engine;
-  world.gravity.y = 1.4;
-  // engine.gravity.y = 0.4;
+  engine.gravity.y = 1.4;
 
   const pipeSizePosA = getPipeSizePosPair();
   const pipeSizePosB = getPipeSizePosPair(Constants.MAX_WIDTH * 1.1);

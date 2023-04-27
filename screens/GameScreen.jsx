@@ -1,5 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { View, Text, Pressable, Image, Animated } from 'react-native';
+import {
+  View,
+  Text,
+  Pressable,
+  Image,
+  Animated,
+  StyleSheet,
+} from 'react-native';
 import { GameEngine } from 'react-native-game-engine';
 import Images from '../assets/images';
 import Constants from '../constants';
@@ -70,124 +77,45 @@ export default function GameScreen() {
     <View style={{ flex: 1 }}>
       <Animated.Image
         source={Images.cloud1}
-        style={{
-          position: 'absolute',
-          bottom: Constants.MAX_HEIGHT - 250,
-          left: Constants.MAX_WIDTH,
-          right: 0,
-          width: 66,
-          height: 57.2,
-          zIndex: 5,
-          transform: [{ translateX: cloudX1 }],
-        }}
+        style={[styles.cloud1(cloudX1)]}
         resizeMode="cover"
       />
       <Animated.Image
         source={Images.cloud2}
-        style={{
-          position: 'absolute',
-          bottom: Constants.MAX_HEIGHT - 200,
-          left: Constants.MAX_WIDTH,
-          right: 0,
-          width: 63.6,
-          height: 32.6,
-          zIndex: 5,
-          transform: [{ translateX: cloudX2 }],
-        }}
+        style={[styles.cloud2(cloudX2)]}
         resizeMode="cover"
       />
       <Animated.Image
         source={Images.cloud3}
-        style={{
-          position: 'absolute',
-          bottom: Constants.MAX_HEIGHT - 320,
-          left: Constants.MAX_WIDTH,
-          right: 0,
-          width: 70.8,
-          height: 49.6,
-          zIndex: 5,
-          transform: [{ translateX: cloudX3 }],
-        }}
+        style={[styles.cloud3(cloudX3)]}
         resizeMode="cover"
       />
       <Animated.Image
         source={Images.cloud4}
-        style={{
-          position: 'absolute',
-          bottom: Constants.MAX_HEIGHT - 470,
-          left: Constants.MAX_WIDTH,
-          right: 0,
-          width: 70.8,
-          height: 49.6,
-          zIndex: 5,
-          transform: [{ translateX: cloudX4 }],
-        }}
+        style={[styles.cloud4(cloudX4)]}
         resizeMode="cover"
       />
       <Image
         source={Images.background1}
-        style={{
-          position: 'absolute',
-          bottom: 40,
-          left: 0,
-          right: 0,
-          width: Constants.MAX_WIDTH,
-          height: 60,
-          zIndex: 3,
-        }}
+        style={styles.bg1}
         resizeMode="stretch"
       />
       <Image
         source={Images.background2}
-        style={{
-          position: 'absolute',
-          bottom: 40,
-          left: 0,
-          right: 0,
-          width: Constants.MAX_WIDTH,
-          height: 160,
-          zIndex: 2,
-        }}
+        style={styles.bg2}
         resizeMode="cover"
       />
       <Image
         source={Images.background3}
-        style={{
-          position: 'absolute',
-          bottom: 40,
-          left: 0,
-          right: 0,
-          width: Constants.MAX_WIDTH,
-          height: 200,
-          zIndex: 1,
-        }}
+        style={styles.bg3}
         resizeMode="cover"
       />
       <Image
         source={Images.background4}
-        style={{
-          position: 'absolute',
-          top: 0,
-          bottom: 0,
-          left: 0,
-          right: 0,
-          width: Constants.MAX_WIDTH,
-          height: Constants.MAX_HEIGHT,
-          zIndex: 0,
-        }}
+        style={styles.bg4}
         resizeMode="cover"
       />
-      <Text
-        style={{
-          paddingTop: 50,
-          textAlign: 'center',
-          fontSize: 40,
-          fontWeight: '500',
-          zIndex: 100,
-        }}
-      >
-        {running && score}
-      </Text>
+      <Text style={styles.score}>{running && score}</Text>
       <GameEngine
         ref={ref => {
           setGameEngine(ref);
@@ -208,84 +136,160 @@ export default function GameScreen() {
             default:
           }
         }}
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          zIndex: 10,
-        }}
+        style={styles.gameEngine}
       />
       {!running && (
-        <Pressable
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            justifyContent: 'center',
-            alignItems: 'center',
-            backgroundColor: 'black',
-            opacity: 0.5,
-            zIndex: 12,
-          }}
-          onPress={handleRestart}
-        >
+        <Pressable style={styles.gameOverContainer} onPress={handleRestart}>
           <View
             style={{
               flex: 1,
-              backgroundColor: 'black',
               paddingTop: 200,
             }}
           >
-            <Text
-              style={{
-                fontWeight: '600',
-                color: 'white',
-                fontSize: 50,
-                fontFamily: '30PackGirlBold-jRpv',
-              }}
-            >
-              GAME OVER
-            </Text>
-          </View>
-          <View
-            style={{
-              flex: 1,
-              backgroundColor: 'black',
-            }}
-          >
-            <Text
-              style={{
-                fontWeight: '600',
-                color: 'white',
-                fontSize: 40,
-                fontFamily: '30PackGirlBold-jRpv',
-              }}
-            >
-              SCORE : {score}
-            </Text>
+            <Text style={styles.gameOver}>GAME OVER</Text>
           </View>
           <View
             style={{
               flex: 1,
             }}
           >
-            <Text
-              style={{
-                fontWeight: '300',
-                color: 'red',
-                fontSize: 30,
-                fontFamily: '30PackGirlBold-jRpv',
-              }}
-            >
-              TAP TO RESTART
-            </Text>
+            <Text style={styles.finalScore}>SCORE : {score}</Text>
+          </View>
+          <View
+            style={{
+              flex: 1,
+            }}
+          >
+            <Text style={styles.tapToReStart}>TAP TO RESTART</Text>
           </View>
         </Pressable>
       )}
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  tapToReStart: {
+    fontWeight: '300',
+    color: 'red',
+    fontSize: 30,
+    fontFamily: '30PackGirlBold-jRpv',
+  },
+  finalScore: {
+    fontWeight: '600',
+    color: 'white',
+    fontSize: 40,
+    fontFamily: '30PackGirlBold-jRpv',
+  },
+  gameOver: {
+    fontWeight: '600',
+    color: 'white',
+    fontSize: 50,
+    fontFamily: '30PackGirlBold-jRpv',
+  },
+  gameOverContainer: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'black',
+    opacity: 0.5,
+    zIndex: 12,
+  },
+  gameEngine: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: 10,
+  },
+  score: {
+    paddingTop: 70,
+    textAlign: 'center',
+    fontSize: 40,
+    zIndex: 100,
+    color: '#731447',
+    fontFamily: 'GrislyBeastRegular-0W9rG',
+  },
+  bg4: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    width: Constants.MAX_WIDTH,
+    height: Constants.MAX_HEIGHT,
+    zIndex: 0,
+  },
+  bg3: {
+    position: 'absolute',
+    bottom: 40,
+    left: 0,
+    right: 0,
+    width: Constants.MAX_WIDTH,
+    height: 200,
+    zIndex: 1,
+  },
+  bg2: {
+    position: 'absolute',
+    bottom: 40,
+    left: 0,
+    right: 0,
+    width: Constants.MAX_WIDTH,
+    height: 160,
+    zIndex: 2,
+  },
+  bg1: {
+    position: 'absolute',
+    bottom: 40,
+    left: 0,
+    right: 0,
+    width: Constants.MAX_WIDTH,
+    height: 60,
+    zIndex: 3,
+  },
+  cloud4: coludX => ({
+    position: 'absolute',
+    bottom: Constants.MAX_HEIGHT - 470,
+    left: Constants.MAX_WIDTH,
+    right: 0,
+    width: 70.8,
+    height: 49.6,
+    zIndex: 5,
+    transform: [{ translateX: coludX }],
+  }),
+  cloud3: cloudX => ({
+    position: 'absolute',
+    bottom: Constants.MAX_HEIGHT - 320,
+    left: Constants.MAX_WIDTH,
+    right: 0,
+    width: 70.8,
+    height: 49.6,
+    zIndex: 5,
+    transform: [{ translateX: cloudX }],
+  }),
+  cloud2: cloudX => ({
+    position: 'absolute',
+    bottom: Constants.MAX_HEIGHT - 200,
+    left: Constants.MAX_WIDTH,
+    right: 0,
+    width: 63.6,
+    height: 32.6,
+    zIndex: 5,
+    transform: [{ translateX: cloudX }],
+  }),
+  cloud1: cloudX => ({
+    position: 'absolute',
+    bottom: Constants.MAX_HEIGHT - 250,
+    left: Constants.MAX_WIDTH,
+    right: 0,
+    width: 66,
+    height: 57.2,
+    zIndex: 5,
+    transform: [{ translateX: cloudX }],
+  }),
+});

@@ -1,7 +1,6 @@
 import React from 'react';
 import Matter from 'matter-js';
-import { View, Image } from 'react-native';
-import Images from '../assets/images';
+import { Image } from 'react-native';
 
 function Cloud({ body }) {
   const { x, y } = body.position;
