@@ -1,13 +1,11 @@
 import Matter from 'matter-js';
-import { Dimensions } from 'react-native';
+
 import Pig from '../components/Pig';
 import Floor from '../components/Floor';
 import Obstacle from '../components/Obstacle';
 import ObstacleLid from '../components/ObstacleLid';
 import { getPipeSizePosPair } from '../utils/random';
-
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+import Constants from '../constants';
 
 export default () => {
   const engine = Matter.Engine.create({ enableSleeping: false });
@@ -16,7 +14,7 @@ export default () => {
   // engine.gravity.y = 0.4;
 
   const pipeSizePosA = getPipeSizePosPair();
-  const pipeSizePosB = getPipeSizePosPair(windowWidth * 1.1);
+  const pipeSizePosB = getPipeSizePosPair(Constants.MAX_WIDTH * 1.1);
 
   return {
     physics: { engine, world },
@@ -71,8 +69,8 @@ export default () => {
     ),
     Floor: Floor(
       world,
-      { x: windowWidth / 2, y: windowHeight },
-      { width: windowWidth, height: 80 },
+      { x: Constants.MAX_WIDTH / 2, y: Constants.MAX_HEIGHT },
+      { width: Constants.MAX_WIDTH, height: 80 },
     ),
   };
 };

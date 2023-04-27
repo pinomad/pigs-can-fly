@@ -1,17 +1,11 @@
 import React from 'react';
 import Matter from 'matter-js';
-import { View, Image } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import Images from '../assets/images';
 
 function Obstacle({ body }) {
   const { x, y } = body.position;
   const width = body.bounds.max.x - body.bounds.min.x;
   const height = body.bounds.max.y - body.bounds.min.y;
-  // console.log(body);
-  // const pipeRatio = 160 / width;
-  // const pipeHeight = 33 * pipeRatio;
-  // const pipeIterations = Math.ceil(height / pipeHeight);
 
   return (
     <LinearGradient

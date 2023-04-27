@@ -1,14 +1,15 @@
 import React from 'react';
 import { StyleSheet, Image } from 'react-native';
-import tapToStart from '../assets/tap-to-start.png';
+
+import Images from '../assets/images';
 
 export default function TapToStart() {
-  return <Image source={tapToStart} style={styles.image} />;
+  return <Image source={Images.tapToStart} style={styles.image} />;
 }
 
 const styles = StyleSheet.create({
   image: {
     width: '50%',
-    height: 50,
+    height: 30,
   },
 });

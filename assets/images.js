@@ -3,7 +3,6 @@ const background2 = require('./img/bg_2.png');
 const background3 = require('./img/bg_3.png');
 const background4 = require('./img/bg_4.png');
 const floor = require('./img/road_long.png');
-const wall = require('./img/wall_1.png');
 const pig1 = require('./img/fly_000.png');
 const pig2 = require('./img/fly_001.png');
 const pig3 = require('./img/fly_002.png');
@@ -23,6 +22,8 @@ const cloud2 = require('./img/cloud_2.png');
 const cloud3 = require('./img/cloud_3.png');
 const cloud4 = require('./img/cloud_4.png');
 const deadPig = require('./img/die_013.png');
+const title = require('./img/title.png');
+const tapToStart = require('./img/tap_to_start.png');
 
 const Images = {
   background1,
@@ -30,7 +31,6 @@ const Images = {
   background3,
   background4,
   floor,
-  wall,
   pig1,
   pig2,
   pig3,
@@ -50,6 +50,8 @@ const Images = {
   cloud3,
   cloud4,
   deadPig,
+  title,
+  tapToStart,
 };
 
 export default Images;
