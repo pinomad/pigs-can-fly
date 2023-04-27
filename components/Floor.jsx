@@ -22,11 +22,11 @@ function Floor({ body }) {
         flexDirection: 'row',
       }}
     >
-      {[...Array(imageIterations * 2)].map((el, idx) => {
+      {[...Array(imageIterations * 2)].map((el, index) => {
         return (
           <Image
             style={{ width: height, height }}
-            key={idx}
+            key={index}
             resizeMode="stretch"
             source={Images.floor}
           />
