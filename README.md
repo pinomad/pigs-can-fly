@@ -4,9 +4,11 @@ Pigs Can Fly는 원터치 조작으로 누구나 쉽고 재밌게 즐길 수 있
 <br>
 <br>
 
+<img src= "https://github.com/pinomad/pigs-can-fly/assets/42368951/cb5b330f-214c-495d-8c04-4b556c3de604" width="117" height="230" />
+
 # Deploy
 
-iOS only : [App Store 링크](https://apps.apple.com/at/app/pigs-can-fly/id6450533872)
+[App Store 링크](https://apps.apple.com/at/app/pigs-can-fly/id6450533872)
 <br>
 <br>
 
@@ -16,12 +18,11 @@ iOS only : [App Store 링크](https://apps.apple.com/at/app/pigs-can-fly/id64505
 - [Deploy](#-deploy)
 - [Motivation](#-motivation)
 - [Challenges](#-challenges)
-  - [1. React Native와 React와의 차이](#1)
-  - [2. 어떻게 역동적인 움직임을 구현할까](#2)
-  - [3. 프레임 드랍 문제](#3)
+  - [1. React Native와 React와의 차이](#1-react-native와-react와의-차이)
+  - [2. 어떻게 중력을 구현할까?](#2-어떻게-중력을-구현할까?)
+  - [3. 어떻게 무한한 맵을 구현할까?](#3-어떻게-무한한-맵을-구현할까?)
 - [Schedule](#-schedule)
 - [Tech Stacks](#-tech-stacks)
-- [Repository Link](#-repository-link)
 - [Member](#-member)
 
 <br>
@@ -42,16 +43,16 @@ React Native와 React는 비슷하면서도 낯설었습니다. HTML이나 React
 HTML에서 쓰던 시맨틱태그들은 없고 각각의 용도에 맞는 제한적인 컴포넌트들만 사용 가능했습니다. RN 팀에서 최소한의 컴포넌트와 API만 제공하고 나머지는 본인이 직접 만들거나 Third-Party 라이브러리를 사용하도록 권장하고 있었습니다.
 css 또한 display속성은 none 과 flex밖에 없다던가, 가상선택자도 사용할 수 없는 등 제약이 많았습니다.
 
-## 2. 어떻게 역동적인 움직임을 구현할까
+## 2. 어떻게 중력을 구현할까?
 
-처음에는 물리엔진 없이 RN에서 기본적으로 제공하는 Animated API를 이용해서 구현해보았습니다. 하지만 화면의 돼지는 그저 느긋하게 둥둥 떠다니는 모습이였고 Easing메소드를 아무리 조정해봐도 제가 원하는 빠릿빠릿한 움직임을 구현하기는 어려웠습니다. 결국 다이나믹한 게임을 연출하기 위해 `Matter.js`를 사용하였습니다.
+처음에는 물리엔진 없이 RN에서 기본적으로 제공하는 Animated API를 이용해서 중력을 구현해보았습니다. 하지만 화면의 돼지는 그저 느긋하게 둥둥 떠다니는 모습이였고 Easing메소드를 아무리 조정해봐도 실제 중력같은 생동감 있는 중력가속도를 구현하기는 어려웠습니다.
+결국 물리엔진을 써야겠다는 판단을 했고 그 중 RN과 호환성이 좋고 공식문서가 잘 정리되어있는 `Matter.js`를 활용하여 중력을 구현했습니다.
 
-## 3. 프레임 드랍 문제
+## 3. 어떻게 무한한 맵을 구현할까?
 
-움직임을 구현 하고 파이프 장애물을 구현하던 중 화면이 뚝뚝 끊기는 현상이 발생했습니다.
-
-<!--
-## why expo, react-natve-game-engine, matter.js? -->
+처음에는 굉장히 큰 맵을 생성하고 그 맵을 돼지가 앞으로 나아가는 형태를 생각했습니다.
+하지만 이 게임은 끝이 존재하지 않고 죽을때까지 계속되는 게임이기 때문에 위와같이 유한한 맵을 생성하는건 적합하지 않았습니다. 게다가 굳이 반복되는 장애물을 여러번 그릴 필요도 없다는 것을 깨달았습니다. 최종적으로 돼지의 x축은 움직이지 않고 y축만 움직이며, 장애물들이 돼지를 향해 다가오는 형태를 착안했습니다.
+장애물 또한 화면에 보이는 장애물의 갯수는 최대 2개이므로 맨 앞의 장애물이 화면 왼쪽으로 사라지면 화면 오른쪽에 다시 생성되는 형태로 구현을 하였습니다.
 
 <br>
 
