@@ -12,7 +12,7 @@ Pigs Can Fly는 원터치 조작으로 누구나 쉽고 재밌게 즐길 수 있
 
 # Deploy
 
-[App Store 링크](https://apps.apple.com/at/app/pigs-can-fly/id6450533872)
+[App Store 링크](https://apps.apple.com/kr/app/pigs-can-fly/id6450533872)
 <br>
 <br>
 
@@ -70,7 +70,7 @@ css 또한 display속성은 none 과 flex밖에 없다던가, 가상선택자도
 
 ## 4. 더 생동감 있게 할 순 없을까?
 
-아직 돼지가 나는 모습이 다소 밋밋해보였습니다. 중력가속도에 따라 몸체가 회전하게되면 좀 더 생동감 있는 연출이 가능해 보였습니다. 공식문서의 Animated API에서 interpolate 메소드를 발견하여 구현 할 수 있었습니다.
+아직 돼지가 나는 모습이 다소 밋밋해보였습니다. 중력가속도에 따라 몸체가 회전하게되면 좀 더 생동감 있는 연출이 가능해 보였습니다. 공식문서의 Animated API에서 [interpolate](https://reactnative.dev/docs/animations#interpolation) 메소드를 발견하여 구현 할 수 있었습니다.
 interpolate란 중간값을 채운다는 의미로 Animated.Value값이 변할때 같이 변하고싶은 값을 설정하여 애니메이션을 다채롭게 해주는 메소드입니다.
 아래 예시처럼 중력의 변화에 따라 몸체의 각도를 바꿔주었습니다.
 
