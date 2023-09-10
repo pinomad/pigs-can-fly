@@ -110,8 +110,12 @@ const rotation = animatedValue.interpolate({
 - Matter.js
 - ESLint
 
-<br>
-<br>
+## Why Expo?
+
+Expo의 한가지 큰 특징으로는 Over The Air Update라는 기능이 있습니다.
+일반적인 네이티브 앱을 수정하고 반영하려면 배포를 다시 하고 앱 스토어의 승인이되기를 기다려야 하는데 Over The Air는 내부적으로 업데이트를 진행하기때문에 추후 배포에 있어서 편리합니다.
+또한 언제든지 React-Native-Cli로 돌아갈 수 있다는 장점도 있습니다.
+단점으로는 일부 Native 모듈이나 API들이 지원을 안하는 경우가 있고 앱 용량도 크고 블루투스 이용이 불가하다던가 하는 이런저런 단점이 있지만 제 경우에는 큰 문제가 되지 않을 것 같아 선택했습니다.
 
 # Member
 
