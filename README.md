@@ -436,7 +436,7 @@ const rotation = animatedValue.interpolate({
 
 ## Why Expo?
 
-`Expo`는 `RN`으로 `iOS,Android` 앱을 개발할 때 필요한 설정들과 기능들을 제공하는 프레임워크입니다.
+`Expo`는 `iOS,Android` 앱을 개발할 때 필요한 설정들과 기능들을 제공하는 프레임워크입니다.
 
 `Expo`의 한 가지 큰 장점으로는 `Over The Air`라는 업데이트 기능이 있습니다.
 일반적인 네이티브 앱을 수정하고 반영하려면 배포를 다시 하고 앱 스토어의 승인되기를 기다려야 하는데 `Over The Air`는 내부적으로 업데이트를 진행하기 때문에 추후 배포에 있어서 편리합니다.
