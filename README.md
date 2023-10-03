@@ -394,7 +394,7 @@ const rotation = animatedValue.interpolate({
 });
 ```
 
-<img width="600" alt="image" src="https://github.com/pinomad/pigs-can-fly/assets/42368951/9bd23321-7f5e-457a-8751-db9c2f70bddb">
+<img width="700" alt="image" src="https://github.com/pinomad/pigs-can-fly/assets/42368951/9bd23321-7f5e-457a-8751-db9c2f70bddb">
 
 <img src="https://github.com/pinomad/pigs-can-fly/assets/42368951/ee95ce49-4056-4fc0-83b0-eda6934f7477" width="180" />
 
