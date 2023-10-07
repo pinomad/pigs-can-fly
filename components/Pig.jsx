@@ -18,8 +18,7 @@ function Pig({ body, pose }) {
 
   const rotation = animatedValue.interpolate({
     inputRange: [-10, 0, 10, 20],
-    outputRange: ['-20deg', '0deg', '15deg', '45deg'],
-    extrapolate: 'clamp',
+    outputRange: ['-20deg', '0deg', '20deg', '40deg'],
   });
 
   return (
